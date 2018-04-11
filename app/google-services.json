@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "885096583409",
+    "firebase_url": "https://reemind-bec64.firebaseio.com",
+    "project_id": "reemind-bec64",
+    "storage_bucket": "reemind-bec64.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885096583409:android:163e6a5fa5d490b0",
+        "android_client_info": {
+          "package_name": "com.reemind"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885096583409-aao1a7tfigepc5vnlnt1o65g6gb3v67t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKbiSk9cKZpNjJKjT-Wn6OmXPxJ93wyQA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

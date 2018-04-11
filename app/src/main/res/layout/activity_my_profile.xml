@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".EditProfile">
+
+<LinearLayout
+    android:paddingTop="0dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/linearLayout2">
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userphoto"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:paddingTop="16dp"
+                app:srcCompat="@drawable/ic_account_face"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#00000000"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RelativeLayout
+                            android:padding="@dimen/activity_horizontal_margin"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                            <ImageView
+                                android:padding="@dimen/activity_horizontal_margin"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:onClick="getFromGallery"
+                                android:background="@drawable/ic_photo_gallery"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginLeft="48dp"
+                                android:layout_marginStart="48dp" />
+
+
+                            <ImageView
+                                android:padding="@dimen/activity_horizontal_margin"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:onClick="restoreDefault"
+                                android:background="@drawable/ic_restore__default_account"
+                                android:layout_marginRight="39dp"
+                                android:layout_marginEnd="39dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true" />
+
+                            <ImageView
+                                android:padding="@dimen/activity_horizontal_margin"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:onClick="getFromCamera"
+                                android:background="@drawable/ic_photo_camera"
+                                android:layout_alignParentTop="true"
+                                android:layout_centerHorizontal="true" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+                </ScrollView>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:text="Account Information"/>
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:hint="Name"/>
+
+            <EditText
+                android:id="@+id/useremail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textEmailAddress"
+                android:enabled="false"
+                android:hint="Email"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="SAVE"
+                android:background="#3B5998"
+                android:textColor="@color/white"
+                android:onClick="setProfilePhoto"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_alignLeft="@+id/linearLayout2"
+        android:layout_alignStart="@+id/linearLayout2"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar" />
+
+
+</RelativeLayout>

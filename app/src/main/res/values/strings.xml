@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">MedMind</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="medlist_empty">No scheduled Medications press \'+\' to get started</string>
+
+
+    <string name="about_app">MedMind is a simple application inspired by Andela Learning Community\'s
+        Android Intermediate Take a Climb Challenge. It provides a simple implementation of a medicine management alarm service
+    that seeks to help patients to take their medicines timely.</string>
+    <string name="author_name">Author : Levit Nudi</string>
+    <string name="github" translatable="false"><a href="https://github.com/levitnudi/MedMind">\nProject source code from Github</a></string>
+    <string name="linkein"><a href="https://www.linkedin.com/in/levitnudi/">\nAbout the author (Linkedin)</a></string>
+    <string name="reemind_title">Drug Name</string>
+    <string name="time_now">Start Time</string>
+    <string name="date_today">Start Date</string>
+    <string name="date_end">End Date</string>
+    <string name="reemind_hint">Add drug description</string>
+</resources>
