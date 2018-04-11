@@ -31,6 +31,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.reemind.models.TempData.SHARED_PREF_NAME;
 
@@ -77,18 +78,18 @@ public class EditProfile extends AppCompatActivity {
 
     }
 
-    void getFromGallery(View view){
+    @OnClick(R.id.fromGallery) void getFromGallery(){
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         startActivityForResult(Intent.createChooser(intent, "Select Photo"), IMAGE_PICK);
     }
 
-    void getFromCamera(View view){
+    @OnClick(R.id.fromCamera) void getFromCamera(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, IMAGE_CAPTURE);
     }
 
-    void restoreDefault(View view){
+    @OnClick(R.id.restore) void restoreDefault(){
         GoogleSignInAccount acct  = GoogleSignIn.getLastSignedInAccount(this);
        if (acct != null) {
            edit.putString("user-name-"+TempData.currentEmailAccount, acct.getDisplayName());

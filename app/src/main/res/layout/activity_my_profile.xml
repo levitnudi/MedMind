@@ -61,8 +61,9 @@
                             android:layout_height="match_parent">
 
 
-                            <ImageView
+                            <android.support.v7.widget.AppCompatImageView
                                 android:padding="@dimen/activity_horizontal_margin"
+                                android:id="@+id/fromGallery"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:onClick="getFromGallery"
@@ -74,8 +75,9 @@
                                 android:layout_marginStart="48dp" />
 
 
-                            <ImageView
+                            <android.support.v7.widget.AppCompatImageView
                                 android:padding="@dimen/activity_horizontal_margin"
+                                android:id="@+id/restore"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:onClick="restoreDefault"
@@ -86,8 +88,9 @@
                                 android:layout_alignParentRight="true"
                                 android:layout_alignParentEnd="true" />
 
-                            <ImageView
+                            <android.support.v7.widget.AppCompatImageView
                                 android:padding="@dimen/activity_horizontal_margin"
+                                android:id="@+id/fromCamera"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:onClick="getFromCamera"

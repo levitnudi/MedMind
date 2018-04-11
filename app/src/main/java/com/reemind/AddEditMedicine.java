@@ -85,6 +85,7 @@ public class AddEditMedicine extends AppCompatActivity implements
     public long mRepeatTime;
     public Calendar mCalendar;
     public AlarmReceiver mAlarmReceiver;
+    public String DATE_TYPE = "start";
 
 
     @Override
@@ -159,8 +160,8 @@ public class AddEditMedicine extends AppCompatActivity implements
         startDate.setText(mDate);
         start_time.setText(mTime);
         //freqInput.setText(mRepeatNo);
-        intvlInput.setText(mRepeatType);
-        end_date.setText("Every " + mRepeatNo + " " + mRepeatType + "(s)");
+        //intvlInput.setText(mRepeatType);
+        //end_date.setText("Every " + mRepeatNo + " " + mRepeatType + "(s)");
 
     }
 
@@ -179,7 +180,21 @@ public class AddEditMedicine extends AppCompatActivity implements
     }
 
     // On clicking Date picker
-    public void setDate(View v) {
+    public void setStartDate(View v) {
+        DATE_TYPE = "start";
+        Calendar now = Calendar.getInstance();
+        DatePickerDialog dpd = DatePickerDialog.newInstance(
+                this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
+        );
+        dpd.show(getFragmentManager(), "Datepickerdialog");
+    }
+
+    // On clicking Date picker
+    public void setEndDate(View v) {
+        DATE_TYPE = "end";
         Calendar now = Calendar.getInstance();
         DatePickerDialog dpd = DatePickerDialog.newInstance(
                 this,
@@ -200,8 +215,9 @@ public class AddEditMedicine extends AppCompatActivity implements
         } else {
             mTime = hourOfDay + ":" + minute;
         }
-        start_time.setText(mTime);
+        start_time.setText("Starts at "+mTime);
     }
+
 
     // Obtain date from date picker
     @Override
@@ -211,7 +227,12 @@ public class AddEditMedicine extends AppCompatActivity implements
         mMonth = monthOfYear;
         mYear = year;
         mDate = dayOfMonth + "/" + monthOfYear + "/" + year;
-        startDate.setText(mDate);
+        if(DATE_TYPE.equals("start")){
+            startDate.setText("Starts from "+mDate);
+        }else if (DATE_TYPE.equals("end")){
+            end_date.setText("Ends on "+mDate);
+        }
+
     }
 
 
@@ -291,8 +312,8 @@ public class AddEditMedicine extends AppCompatActivity implements
                     drugName.getText().toString(),
                     drugDescription.getText().toString(),
                     (int) drugIcon.getTag(),
-                    startDate.getText().toString(),
-                    end_date.getText().toString(),
+                    startDate.getText().toString().replaceAll("Starts from ", ""),
+                    end_date.getText().toString().replaceAll("Ends on", ""),
                     start_time.getText().toString(),
                     freqInput.getText().toString(),
                     intvlInput.getText().toString(),
