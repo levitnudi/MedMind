@@ -35,6 +35,14 @@
             android:name=".AddEditMedicine"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize" />
+
+        <activity
+            android:name=".NotificationActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize" />
+
+
+
         <activity
             android:name=".EditProfile"
             android:configChanges="keyboardHidden"

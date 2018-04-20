@@ -393,10 +393,10 @@ public class MainActivity extends AppCompatActivity
         switch (id) {
             case R.id.action_share: {
                 Intent sendIntent = new Intent();
-                Uri url = Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName());
+                Uri url = Uri.parse("https://github.com/levitnudi/MedMind");
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "Hi!, I'm using "+getString(R.string.app_name)+" to manage conveniently my medication. " +
-                        "Download it here "+url);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Hi!, I'm using "+getString(R.string.app_name)+" to manage my medication. " +
+                        "Find out more here "+url);
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
                 return true;
@@ -413,7 +413,7 @@ public class MainActivity extends AppCompatActivity
         switch (id) {
             case R.id.notification_manager: {
                 //CartActivity.startActivity(this);
-                Intent preferenceIntent = new Intent(this, AddEditMedicine.class);
+                Intent preferenceIntent = new Intent(this, NotificationActivity.class);
                 startActivity(preferenceIntent);
                 break;
             }
@@ -430,15 +430,11 @@ public class MainActivity extends AppCompatActivity
             }
 
             case R.id.app_rate_us:
-                Uri rateLink = Uri.parse("market://details?id=" + getPackageName());
-                Uri rateLinkNotFound = Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName());
-                Intent rateIntent = new Intent(Intent.ACTION_VIEW, rateLink);
-                Intent rateNotFound = new Intent(Intent.ACTION_VIEW, rateLinkNotFound);
+                Uri gitLink = Uri.parse("https://github.com/levitnudi/MedMind");
+                Intent gitIntent = new Intent(Intent.ACTION_VIEW, gitLink);
                 try{
-                    startActivity(rateIntent);
-                }catch (ActivityNotFoundException e){
-                    startActivity(rateNotFound);
-                }
+                    startActivity(gitIntent);
+                }catch (ActivityNotFoundException e){}
                 break;
         }
 

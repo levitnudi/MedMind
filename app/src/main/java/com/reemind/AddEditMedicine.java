@@ -23,13 +23,20 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.reemind.models.TempData.ACTIVATE_ALARM;
+import static com.reemind.models.TempData.REPEAR_TYPE;
+import static com.reemind.models.TempData.REPEAT;
 
 public class AddEditMedicine extends AppCompatActivity implements
         TimePickerDialog.OnTimeSetListener,
@@ -120,6 +127,10 @@ public class AddEditMedicine extends AppCompatActivity implements
             getMedicationDetails(bundle.getInt("rowId"));
             isUpdate = true;
             rowId = bundle.getInt("rowId");
+            dateToStart = db.getMedication(rowId).getColumnStartDate();
+            dateToEnd  = db.getMedication(rowId).getColumnEndDate();
+            timeTostart  = db.getMedication(rowId).getColumnStartTime();
+
         }
 
         // Initialize default values
@@ -157,8 +168,9 @@ public class AddEditMedicine extends AppCompatActivity implements
         });
 
         // Setup TextViews using reminder values
-        startDate.setText(mDate);
-        start_time.setText(mTime);
+        startDate.setText("Started on "+dateToStart);
+        start_time.setText("Starts at "+timeTostart);
+        end_date.setText("Ends on "+dateToEnd);
         //freqInput.setText(mRepeatNo);
         //intvlInput.setText(mRepeatType);
         //end_date.setText("Every " + mRepeatNo + " " + mRepeatType + "(s)");
@@ -212,10 +224,11 @@ public class AddEditMedicine extends AppCompatActivity implements
         mMinute = minute;
         if (minute < 10) {
             mTime = hourOfDay + ":" + "0" + minute;
+            start_time.setText("Starts at "+mTime);
         } else {
             mTime = hourOfDay + ":" + minute;
+            start_time.setText("Starts at "+mTime);
         }
-        start_time.setText("Starts at "+mTime);
     }
 
 
@@ -299,7 +312,6 @@ public class AddEditMedicine extends AppCompatActivity implements
                 return true;
             case R.id.item_save:
                 saveMedication();
-                //saveReminder();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -307,14 +319,22 @@ public class AddEditMedicine extends AppCompatActivity implements
 
 
     public void saveMedication() {
+        String fromDate = startDate.getText().toString().replaceAll("Starts on ", "")
+                .replaceAll("Started on ", "").replaceAll(" ", "");
+
+        String toDate = end_date.getText().toString().replaceAll("Ended on ", "")
+                .replaceAll("Ends on ", "").replaceAll(" ", "");
+
+        String fromTime = start_time.getText().toString().replaceAll("Starts at ", "")
+                .replaceAll(" ", "");
         if (!isUpdate) {
           long ID = db.insertMedication(TempData.currentEmailAccount,
                     drugName.getText().toString(),
                     drugDescription.getText().toString(),
                     (int) drugIcon.getTag(),
-                    startDate.getText().toString().replaceAll("Starts from ", ""),
-                    end_date.getText().toString().replaceAll("Ends on", ""),
-                    start_time.getText().toString(),
+                    fromDate,
+                    toDate,
+                    fromTime,
                     freqInput.getText().toString(),
                     intvlInput.getText().toString(),
                     TempData.REPEAT,
@@ -329,8 +349,10 @@ public class AddEditMedicine extends AppCompatActivity implements
             mCalendar.set(Calendar.MINUTE, mMinute);
             mCalendar.set(Calendar.SECOND, 0);
 
+
+
             // Add interval type (Hours)
-            mRepeatTime = Integer.parseInt(mRepeatNo) * TempData.MIL_HOURS;
+            mRepeatTime = Integer.parseInt(intvlInput.getText().toString()) * TempData.MIL_HOURS;
 
             new AlarmReceiver().setRepeatAlarm(getApplicationContext(), mCalendar, (int)ID, mRepeatTime);
 
@@ -339,15 +361,16 @@ public class AddEditMedicine extends AppCompatActivity implements
                     drugName.getText().toString(),
                     drugDescription.getText().toString(),
                     (int) drugIcon.getTag(),
-                    startDate.getText().toString(),
-                    end_date.getText().toString(),
-                    start_time.getText().toString(),
+                    fromDate,
+                    toDate,
+                    fromTime,
                     freqInput.getText().toString(),
                     intvlInput.getText().toString(),
                     TempData.REPEAT,
                     TempData.REPEAR_TYPE,
                     TempData.ACTIVATE_ALARM);
-
+                   // Add interval type (Hours)
+            mRepeatTime = Integer.parseInt(intvlInput.getText().toString()) * TempData.MIL_HOURS;
             new AlarmReceiver().setRepeatAlarm(getApplicationContext(), mCalendar, rowId, mRepeatTime);
         }
         startActivity(new Intent(AddEditMedicine.this, MainActivity.class));
@@ -382,3 +405,122 @@ public class AddEditMedicine extends AppCompatActivity implements
     }
 
 }
+
+
+ /*   public void saveMedication() {
+        String fromDate = startDate.getText().toString().replaceAll("Starts on ", "")
+                .replaceAll("Started on ", "").replaceAll(" ", "");
+
+        String toDate = end_date.getText().toString().replaceAll("Ended on ", "")
+                .replaceAll("Ends on ", "").replaceAll(" ", "");
+
+        String fromTime = start_time.getText().toString().replaceAll("Starts at ", "")
+                .replaceAll(" ", "");
+
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+        if (!isUpdate) {
+
+            long ID = db.insertMedication(TempData.currentEmailAccount,
+                    drugName.getText().toString(),
+                    drugDescription.getText().toString(),
+                    (int) drugIcon.getTag(),
+                    fromDate,
+                    toDate,
+                    fromTime,
+                    freqInput.getText().toString(),
+                    intvlInput.getText().toString(),
+                    REPEAT,
+                    REPEAR_TYPE,
+                    ACTIVATE_ALARM);
+
+            //saving reminders for all dates between the start and end date
+          *//*  List<Date> list = daysBetween(fromDate, toDate);
+            for (Date date : list) {
+                String formattedDate = format.format(date);*//*
+
+
+            //split the date into days, months and years
+              *//*  String[] dateArray = formattedDate.split("/");
+
+                mMonth = Integer.parseInt(dateArray[1]);
+                mDay = Integer.parseInt(dateArray[0]);
+                mYear = Integer.parseInt(dateArray[2]);*//*
+
+            // Set up calender for creating the notification
+            mCalendar.set(Calendar.MONTH, --mMonth);
+            mCalendar.set(Calendar.YEAR, mYear);
+            mCalendar.set(Calendar.DAY_OF_MONTH, mDay);
+            mCalendar.set(Calendar.HOUR_OF_DAY, mHour);
+            mCalendar.set(Calendar.MINUTE, mMinute);
+            mCalendar.set(Calendar.SECOND, 0);
+
+          *//*     for(int i=0; i<10; i++){
+                showToast();
+            }*//*
+
+            // Add interval type (Hours)
+            mRepeatTime = Integer.parseInt(intvlInput.getText().toString()) * TempData.MIL_HOURS;
+
+            new AlarmReceiver().setRepeatAlarm(getApplicationContext(), mCalendar, (int) ID, mRepeatTime);
+
+
+        } else {
+
+            updateNote(TempData.currentEmailAccount,
+                    drugName.getText().toString(),
+                    drugDescription.getText().toString(),
+                    (int) drugIcon.getTag(),
+                    fromDate,
+                    toDate,
+                    fromTime,
+                    freqInput.getText().toString(),
+                    intvlInput.getText().toString(),
+                    REPEAT,
+                    REPEAR_TYPE,
+                    ACTIVATE_ALARM);
+
+            new AlarmReceiver().setRepeatAlarm(getApplicationContext(), mCalendar, rowId, mRepeatTime);
+
+
+        }
+
+
+        startActivity(new Intent(AddEditMedicine.this, MainActivity.class));
+        showToast("Saved successfuly!");
+        finish();
+
+    }
+
+
+
+    public void showToast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+    }
+
+
+
+    //Getting all dates in between the start and end date
+    public List<Date> daysBetween(String fromDate, String toDate){
+        List<Date> dates = new ArrayList<>();
+        try {
+
+            DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+            Date date1  = sdf.parse(fromDate);
+            Date date2 = sdf.parse(toDate);
+
+
+            Calendar cal1 = Calendar.getInstance();
+            cal1.setTime(date1);
+
+            Calendar cal2 = Calendar.getInstance();
+            cal2.setTime(date2);
+
+            while(cal1.before(cal2)){
+                cal1.add(Calendar.DATE, 1);
+                dates.add(cal1.getTime());
+            }
+        }catch (Exception e){showToast(e.getMessage());}
+        return dates;
+    }*/

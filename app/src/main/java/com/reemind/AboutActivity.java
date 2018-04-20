@@ -33,7 +33,7 @@ public class AboutActivity extends AppCompatActivity {
 
         }
 
-       View mainContent = findViewById(R.id.main_content);
+        View mainContent = findViewById(R.id.main_content);
         if (mainContent != null) {
             mainContent.setAlpha(0);
             mainContent.animate().alpha(1).setDuration(2000);
@@ -43,7 +43,7 @@ public class AboutActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.githubURL)).setMovementMethod(LinkMovementMethod.getInstance());
         ((TextView)findViewById(R.id.textFieldVersionName)).setText(BuildConfig.VERSION_NAME);
 
-         overridePendingTransition(0, 0);
+        overridePendingTransition(0, 0);
 
     }
 

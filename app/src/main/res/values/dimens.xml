@@ -6,6 +6,11 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="app_bar_height">160dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
     <dimen name="title_padding_right">16dp</dimen>
     <dimen name="title_padding_left">58dp</dimen>
     <dimen name="create_scroll_view_padding">0dp</dimen>
