@@ -1,0 +1,30 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="588" measuredH="725" mockupW="356" mockupH="725">
+  <controls>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::iPhone" x="232" y="0" w="-1" h="-1" measuredW="356" measuredH="725" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <resizing>stretch</resizing>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Image" x="249" y="82" w="321" h="562" measuredW="748" measuredH="528" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>./assets/medical_bg.jpeg</src>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Image" x="368" y="161" w="84" h="76" measuredW="512" measuredH="512" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>./assets/med_mind.png</src>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Label" x="379" y="243" w="61" h="-1" measuredW="53" measuredH="21" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>MedMind</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Image" x="282" y="494" w="256" h="43" measuredW="410" measuredH="85" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>./assets/google.png</src>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
